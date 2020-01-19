@@ -11,13 +11,68 @@
 </head>
 
 <body>
-  <button type="button" class="btn btn-primary">Primary</button>
+  <div class="container">
+    <div class="card mx-auto" style="max-width: 400px;">
+      <h3 class="card-header">Book your food blah</h3>
+      <form>
+        <div class="card-body">
+          <h5 class="card-title">Date and Time</h5>
+          <div class="form-group">
+            <label for="select_date" class="w-100 text-center">Date</label>
+            <select class="form-control" id="select_date" oninput="bean();">
+              <option value="" disabled selected hidden>Choose a date</option>
+              <option>option 1</option>
+              <option>option 2</option>
+              <option>option 3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="select_time" class="w-100 text-center">Time</label>
+            <select class="form-control" id="select_time" oninput="" disabled>
+
+            </select>
+          </div>
+
+          <hr>
+
+          <h5 class="card-title">Contact Information</h5>
+          <div class="container-fluid p-0 my-2">
+            <div class="row">
+              <div class="col">
+                <input type="text" id="first_name" class="form-control" placeholder="First name">
+              </div>
+              <div class="col">
+                <input type="text" id="last_name" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+          </div>
+          <input type="email" id="email" class="form-control my-2" placeholder="Email">
+
+          <input type="tel" id="phone" class="form-control my-2" placeholder="Phone number">
+
+          <hr>
+
+          <div class="form-group w-100 text-right m-0">
+            <button type="submit" class="btn btn-light mx-auto" disabled>Submit request</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <script>
+    var bean = function() {
+      document.getElementById('select_time').innerHTML = "<option value='' disabled selected hidden>Choose a time</option>\n<option>option 1</option>\n<option>option 2</option>\n<option>option 3</option>";
+      document.getElementById('select_time').disabled = false;
+    }
+
+  </script>
 </body>
 
 </html>
