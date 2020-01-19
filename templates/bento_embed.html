@@ -1,34 +1,47 @@
 <div id="stuff"></div>
 <script>
-  var xhttp;
-  // body
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("stuff").insertAdjacentHTML('afterend', this.responseText);
-    }
+  var do_body = function() {
+    var xhttp;
+    // body
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("stuff").insertAdjacentHTML('afterend', this.responseText);
+        console.log('did body');
+      }
+    };
+    xhttp.open("GET", "https://www.sonosbackend.com/book/body", true);
+    xhttp.send();
   };
-  xhttp.open("GET", "https://www.sonosbackend.com/book/body", true);
-  xhttp.send();
 
-  // head
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementsByTagName("head")[0].insertAdjacentHTML('afterend', this.responseText);
-    }
+  var do_scripts = function() {
+    // scripts
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementsByTagName("body")[0].insertAdjacentHTML('beforeend', this.responseText);
+        console.log('did scripts');
+        do_body();
+      }
+    };
+    xhttp.open("GET", "https://www.sonosbackend.com/book/scripts", true);
+    xhttp.send();
   };
-  xhttp.open("GET", "https://www.sonosbackend.com/book/head", true);
-  xhttp.send();
 
-  // scripts
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementsByTagName("body")[0].insertAdjacentHTML('beforeend', this.responseText);
-    }
+  function do_head() {
+    // head
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementsByTagName("head")[0].insertAdjacentHTML('beforeend', this.responseText);
+        console.log('did head');
+        do_scripts();
+      }
+    };
+    xhttp.open("GET", "https://www.sonosbackend.com/book/head", true);
+    xhttp.send();
   };
-  xhttp.open("GET", "https://www.sonosbackend.com/book/scripts", true);
-  xhttp.send();
+
+  do_head();
 
 </script>
